@@ -1,0 +1,6 @@
+.gradle
+build
+src/main/bin
+src/main/gen
+src/androidTest/bin
+src/androidTest/gen
