@@ -4,3 +4,5 @@ src/main/bin
 src/main/gen
 src/androidTest/bin
 src/androidTest/gen
+src/main/libs/*.jar
+!src/main/libs/android-support-v4.jar

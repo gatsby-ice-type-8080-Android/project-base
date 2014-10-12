@@ -17,3 +17,22 @@ android {
 android.sourceSets.each {
     it.java.srcDirs = [ "src/${it.name}/src" ]
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile files('src/main/libs/android-support-v4.jar')
+    compile 'org.roboguice:roboguice:2.0'
+}
+
+task copyLibs(type : Copy) {
+    configurations.compile.each {
+        from it.toString()
+        into 'src/main/libs'
+        exclude {
+            new File('src/main/libs', it.name).exists()
+        }
+    }
+}
