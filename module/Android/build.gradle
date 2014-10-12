@@ -22,17 +22,19 @@ repositories {
     mavenCentral()
 }
 
+ext.libsDir = 'src/main/libs'
+
 dependencies {
-    compile files('src/main/libs/android-support-v4.jar')
+    compile files("${libsDir}/android-support-v4.jar")
     compile 'org.roboguice:roboguice:2.0'
 }
 
 task copyLibs(type : Copy) {
     configurations.compile.each {
         from it.toString()
-        into 'src/main/libs'
+        into libsDir
         exclude {
-            new File('src/main/libs', it.name).exists()
+            new File(libsDir, it.name).exists()
         }
     }
 }
