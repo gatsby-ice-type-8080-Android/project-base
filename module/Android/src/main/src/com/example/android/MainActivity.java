@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.android.db.MyDaoProvider;
 import com.example.android.db.SampleTable;
+import com.example.android.domain.MyDomain;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 @ContentView(R.layout.activity_main)
@@ -30,6 +31,9 @@ public class MainActivity extends RoboActivity {
     @Inject
     private MyDaoProvider daoProvider;
     
+    @Inject
+    private MyDomain domain;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class MainActivity extends RoboActivity {
         this.button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                message.setText("Hello Android!!");
+                message.setText(domain.getMessage());
             }
         });
         

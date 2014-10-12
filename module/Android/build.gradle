@@ -25,6 +25,7 @@ repositories {
 ext.libsDir = 'src/main/libs'
 
 dependencies {
+    compile project(':Domain')
     compile files("${libsDir}/android-support-v4.jar")
     compile 'org.roboguice:roboguice:2.0'
     compile 'com.j256.ormlite:ormlite-android:4.48'

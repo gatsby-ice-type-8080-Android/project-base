@@ -40,6 +40,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         getInstrumentation().waitForIdleSync();
         
         // verify
-        assertEquals(message.getText(), "Hello Android!!");
+        assertEquals(message.getText(), "Hello Android Project!!");
     }
 }
