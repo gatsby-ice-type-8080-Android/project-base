@@ -18,16 +18,11 @@ android.sourceSets.each {
     it.java.srcDirs = [ "src/${it.name}/src" ]
 }
 
-repositories {
-    mavenCentral()
-}
-
 ext.libsDir = 'src/main/libs'
 
 dependencies {
     compile project(':Domain')
     compile files("${libsDir}/android-support-v4.jar")
-    compile 'org.roboguice:roboguice:2.0'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'org.flywaydb:flyway-core:3.0'
     compile 'org.sqldroid:sqldroid:1.0.3'

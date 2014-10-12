@@ -5,14 +5,12 @@ import javax.inject.Inject;
 import roboguice.activity.event.OnCreateEvent;
 import roboguice.activity.event.OnDestroyEvent;
 import roboguice.event.Observes;
-import roboguice.inject.ContextSingleton;
 import roboguice.util.Ln;
 import android.app.Activity;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-@ContextSingleton
 public class MyDaoProvider {
     
     @Inject

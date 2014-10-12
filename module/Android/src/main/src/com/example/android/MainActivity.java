@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.android.db.MyDaoProvider;
 import com.example.android.db.SampleTable;
-import com.example.android.domain.MyDomain;
+import com.example.android.domain.MyInterface;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 @ContentView(R.layout.activity_main)
@@ -32,7 +32,7 @@ public class MainActivity extends RoboActivity {
     private MyDaoProvider daoProvider;
     
     @Inject
-    private MyDomain domain;
+    private MyInterface domain;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
