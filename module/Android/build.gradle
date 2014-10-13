@@ -18,7 +18,10 @@ android.sourceSets.each {
     it.java.srcDirs = [ "src/${it.name}/src" ]
 }
 
-ext.libsDir = 'src/main/libs'
+ext {
+    libsDir = 'src/main/libs'
+    testLibsDir = 'src/androidTest/libs'
+}
 
 dependencies {
     compile project(':Domain')
@@ -26,14 +29,29 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'org.flywaydb:flyway-core:3.0'
     compile 'org.sqldroid:sqldroid:1.0.3'
+    
+    androidTestCompile 'com.uphyca:android-junit3-dbunit:0.5'
 }
 
-task copyLibs(type : Copy) {
-    configurations.compile.each {
-        from it.toString()
-        into libsDir
-        exclude {
-            new File(libsDir, it.name).exists()
+task copyLibs << {
+    configurations {
+        compile.each { lib ->
+            copyIfNotExists(lib, libsDir)
         }
+        
+        androidTestCompile.each { lib ->
+            copyIfNotExists(lib, testLibsDir)
+        }
+    }
+}
+
+def copyIfNotExists(src, destDir) {
+    copy {
+        from src.toString()
+        into destDir
+        exclude {
+            new File(destDir, src.name).exists()
+        }
+        exclude 'android-support-v4.jar', 'Domain.jar'
     }
 }

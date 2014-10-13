@@ -9,7 +9,6 @@ import roboguice.util.Ln;
 import android.app.Activity;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 public class MyDaoProvider {
     
@@ -17,7 +16,6 @@ public class MyDaoProvider {
     private Activity activity;
     
     private MyDatabaseOpenHelper helper;
-    private RuntimeExceptionDao<SampleTable, Long> sampleTableDao;
 
     public void onActivityCreate(@Observes OnCreateEvent event) {
         this.helper = OpenHelperManager.getHelper(this.activity, MyDatabaseOpenHelper.class);
@@ -28,12 +26,8 @@ public class MyDaoProvider {
         OpenHelperManager.releaseHelper();
         Ln.v("MyDatabaseOpeHelperProvider.onActivityDestroy()");
     }
-
-    public RuntimeExceptionDao<SampleTable, Long> getSampleTableDao() {
-        if (this.sampleTableDao == null) {
-            this.sampleTableDao = this.helper.getRuntimeExceptionDao(SampleTable.class);
-        }
-
-        return this.sampleTableDao;
+    
+    public MyDatabaseOpenHelper getHelper() {
+        return this.helper;
     }
 }

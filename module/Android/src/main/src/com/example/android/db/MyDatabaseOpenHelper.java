@@ -9,12 +9,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 
 public class MyDatabaseOpenHelper extends OrmLiteSqliteOpenHelper {
     
-    private static final String DATABASE_NAME = "sample.db";
+    public static final String DATABASE_NAME = "sample.db";
     private static final int DATABASE_VERSION = 1;
+    private RuntimeExceptionDao<SampleTable, Long> sampleTableDao;
     
     public MyDatabaseOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,6 +31,14 @@ public class MyDatabaseOpenHelper extends OrmLiteSqliteOpenHelper {
         Ln.v("migrate database.");
         
         db.close();
+    }
+
+    public RuntimeExceptionDao<SampleTable, Long> getSampleTableDao() {
+        if (this.sampleTableDao == null) {
+            this.sampleTableDao = this.getRuntimeExceptionDao(SampleTable.class);
+        }
+
+        return this.sampleTableDao;
     }
 
     @Override public void onCreate(SQLiteDatabase arg0, ConnectionSource arg1) {/*no use*/}

@@ -45,7 +45,7 @@ public class MainActivity extends RoboActivity {
             }
         });
         
-        RuntimeExceptionDao<SampleTable, Long> dao = this.daoProvider.getSampleTableDao();
+        RuntimeExceptionDao<SampleTable, Long> dao = this.daoProvider.getHelper().getSampleTableDao();
         List<SampleTable> list = dao.queryForAll();
         
         for (SampleTable s : list) {
